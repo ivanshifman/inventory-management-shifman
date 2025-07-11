@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { Config } from "tailwindcss";
 import { createThemes } from "tw-colors";
 import colors from "tailwindcss/colors";
@@ -26,13 +27,10 @@ const shadeMapping = {
   "900": "50",
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const generateThemeObject = (colors: any, mapping: any, invert = false) => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const theme: any = {};
   baseColors.forEach((color) => {
     theme[color] = {};
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     Object.entries(mapping).forEach(([key, value]: any) => {
       const shadeKey = invert ? value : key;
       theme[color][key] = colors[color][shadeKey];

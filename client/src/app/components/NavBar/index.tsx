@@ -1,14 +1,42 @@
 "use client";
 
-import { Bell, Menu, Settings, Sun } from "lucide-react";
 import Link from "next/link";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import {
+  setIsDarkMode,
+  setIsSidebarCollapsed,
+} from "@/redux/state/globalSlice";
+import { Bell, Menu, Moon, Settings, Sun } from "lucide-react";
 
-const Navbar = () => {
+const NavBar = () => {
+  const dispatch = useAppDispatch();
+  const isSidebarCollapsed = useAppSelector(
+    (state) => state.global.isSidebarCollapsed
+  );
+  const isDarkMode = useAppSelector((state) => state.global.isDarkMode);
+
+  const toggleSidebar = () => {
+    dispatch(setIsSidebarCollapsed(!isSidebarCollapsed));
+  };
+
+  const toggleDarkMode = () => {
+    dispatch(setIsDarkMode(!isDarkMode));
+  };
+
   return (
     <div className="flex justify-between items-center w-full mb-7">
       <div className="flex justify-between items-center gap-5">
-        <button className="px-3 py-3 bg-gray-100 rounded-full hover:bg-blue-100" aria-label="menu">
-          <Menu className="w-4 h-4" />
+        <button
+          className="px-3 py-3 bg-gray-100 rounded-full hover:bg-blue-100"
+          onClick={toggleSidebar}
+          aria-label="Toggle sidebar"
+        >
+          <Menu
+            className={`w-4 h-4 ${
+              isDarkMode ? "text-gray-900" : "text-gray-500"
+            }`}
+            size={24}
+          />
         </button>
 
         <div className="relative">
@@ -27,12 +55,21 @@ const Navbar = () => {
       <div className="flex justify-between items-center gap-5">
         <div className="hidden md:flex justify-between items-center gap-5">
           <div>
-            <button aria-label="toggle dark mode">
-              <Sun className="cursor-pointer text-gray-500" size={24} />
+            <button onClick={toggleDarkMode}>
+              {isDarkMode ? (
+                <Sun className="cursor-pointer text-gray-50" size={24} />
+              ) : (
+                <Moon className="cursor-pointer text-gray-500" size={24} />
+              )}
             </button>
           </div>
           <div className="relative">
-            <Bell className="cursor-pointer text-gray-500" size={24} />
+            <Bell
+              className={`cursor-pointer ${
+                isDarkMode ? "  text-gray-50" : " text-gray-500"
+              }`}
+              size={24}
+            />
             <span className="absolute -top-2 -right-2 inline-flex items-center justify-center px-[0.4rem] py-1 text-xs font-semibold leading-none text-red-100 bg-red-400 rounded-full">
               3
             </span>
@@ -44,11 +81,16 @@ const Navbar = () => {
           </div>
         </div>
         <Link href="/settings">
-          <Settings className="cursor-pointer text-gray-500" size={24} />
+          <Settings
+            className={`cursor-pointer ${
+              isDarkMode ? "  text-gray-50" : " text-gray-500"
+            }`}
+            size={24}
+          />
         </Link>
       </div>
     </div>
   );
 };
 
-export default Navbar;
+export default NavBar;
