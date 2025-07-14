@@ -6,6 +6,7 @@ client/dist/
 server/dist/
 client/.env/
 server/.env/
+server/logs
 server/generated/prisma
 server/prisma/seedData
 server/prisma/seed.ts

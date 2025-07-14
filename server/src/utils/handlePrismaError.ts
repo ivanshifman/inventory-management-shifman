@@ -1,7 +1,7 @@
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 import { AppError } from "./appError";
 
-export function handlePrismaError(error: any): AppError {
+export function handlePrismaError(error: unknown): AppError {
   if (error instanceof PrismaClientKnownRequestError) {
     switch (error.code) {
       case "P2025":
