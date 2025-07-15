@@ -10,7 +10,8 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import Loader from "../components/Loading";
+import Loader from "@/app/components/Loading";
+import ErrorLoading from "@/app/components/Error";
 
 const CardSalesSummary = () => {
   const { data, isLoading, isError, refetch } = useGetDashboardMetricsQuery();
@@ -40,16 +41,10 @@ const CardSalesSummary = () => {
 
   if (isError) {
     return (
-      <div className="m-5 text-red-500 text-center">
-        <p>Error loading data</p>
-        <button
-          onClick={refetch}
-          className="text-blue-500 underline"
-          aria-label="Retry"
-        >
-          Retry
-        </button>
-      </div>
+      <ErrorLoading
+        refetch={refetch}
+        message="There was an error loading sales summary. Please try again."
+      />
     );
   }
 

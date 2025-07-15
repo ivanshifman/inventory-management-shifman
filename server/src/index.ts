@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import helmet from "helmet";
 import dashboardRoutes from "./routes/dashboardRoutes";
+import productRoutes from "./routes/productRoutes";
 import { errorHandler } from "./middlewares/errorHandler";
 import { AppError } from "./utils/appError";
 import logger from "./lib/logger";
@@ -18,8 +19,9 @@ app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(loggerMiddleware);
 
 app.use("/dashboard", dashboardRoutes);
+app.use("/products", productRoutes);
 
-app.use((req, res, next) => {
+app.use("*", (req, res, next) => {
   next(new AppError(`Route ${req.originalUrl} not found`, 404));
 });
 
