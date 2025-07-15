@@ -36,17 +36,27 @@ export const getDashboardMetrics = async (
       },
     });
 
-    const expenseByCategorySummaryRaw = await prisma.expenseByCategory.findMany({
-      take: 5,
-      orderBy: {
-        date: "desc",
+    const expenseByCategorySummaryRaw = await prisma.expenseByCategory.findMany(
+      {
+        take: 5,
+        orderBy: {
+          date: "desc",
+        },
+      }
+    );
+
+    const expenseByCategorySummary = expenseByCategorySummaryRaw.map(
+      (item) => ({
+        ...item,
+        amount: item.amount.toString(),
+      })
+    );
+
+    const statCards = await prisma.statCard.findMany({
+      include: {
+        details: true,
       },
     });
-
-    const expenseByCategorySummary = expenseByCategorySummaryRaw.map((item) => ({
-      ...item,
-      amount: item.amount.toString(),
-    }));
 
     res.json({
       popularProducts,
@@ -54,6 +64,7 @@ export const getDashboardMetrics = async (
       purchaseSummary,
       expenseSummary,
       expenseByCategorySummary,
+      statCards,
     });
   } catch (error) {
     next(handlePrismaError(error));

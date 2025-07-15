@@ -8,13 +8,13 @@ datasource db {
 }
 
 model Users {
-  userId String    @id @default(uuid())
+  userId String @id @default(uuid())
   name   String
   email  String @unique
 }
 
 model Products {
-  productId     String        @id @default(uuid())
+  productId     String      @id @default(uuid())
   name          String
   price         Float
   rating        Float?
@@ -24,7 +24,7 @@ model Products {
 }
 
 model Sales {
-  saleId      String      @id @default(uuid())
+  saleId      String   @id @default(uuid())
   productId   String
   timestamp   DateTime
   quantity    Int
@@ -34,7 +34,7 @@ model Sales {
 }
 
 model Purchases {
-  purchaseId String      @id @default(uuid())
+  purchaseId String   @id @default(uuid())
   productId  String
   timestamp  DateTime
   quantity   Int
@@ -44,38 +44,56 @@ model Purchases {
 }
 
 model Expenses {
-  expenseId String      @id @default(uuid())
+  expenseId String   @id @default(uuid())
   category  String
   amount    Float
   timestamp DateTime
 }
 
 model SalesSummary {
-  salesSummaryId   String      @id @default(uuid())
+  salesSummaryId   String   @id @default(uuid())
   totalValue       Float
   changePercentage Float?
   date             DateTime
 }
 
 model PurchaseSummary {
-  purchaseSummaryId String      @id @default(uuid())
+  purchaseSummaryId String   @id @default(uuid())
   totalPurchased    Float
   changePercentage  Float?
   date              DateTime
 }
 
 model ExpenseSummary {
-  expenseSummaryId  String                 @id @default(uuid())
+  expenseSummaryId  String              @id @default(uuid())
   totalExpenses     Float
   date              DateTime
   ExpenseByCategory ExpenseByCategory[]
 }
 
 model ExpenseByCategory {
-  expenseByCategoryId String            @id @default(uuid())
+  expenseByCategoryId String         @id @default(uuid())
   expenseSummaryId    String
   category            String
   amount              BigInt         @db.BigInt
   date                DateTime
   expenseSummary      ExpenseSummary @relation(fields: [expenseSummaryId], references: [expenseSummaryId], onDelete: Cascade)
+}
+
+model StatCard {
+  statCardId          String           @id @default(uuid())
+  title       String
+  dateRange   String
+  primaryIcon String
+  details     StatCardDetail[]
+}
+
+model StatCardDetail {
+  statCardDetailId              String   @id @default(uuid())
+  title            String
+  amount           Float
+  changePercentage Int
+  icon             String
+  statCardId       String
+  statCard         StatCard @relation(fields: [statCardId], references: [statCardId])
 }
