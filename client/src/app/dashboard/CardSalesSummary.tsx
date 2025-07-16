@@ -49,13 +49,13 @@ const CardSalesSummary = () => {
   }
 
   return (
-    <div className="row-span-3 xl:row-span-6 bg-white shadow-md rounded-2xl flex flex-col justify-between">
+    <div className="row-span-3 xl:row-span-6 bg-white shadow-md rounded-2xl flex flex-col justify-between text-gray-800">
       {isLoading ? (
         <Loader />
       ) : (
         <>
           <div>
-            <h2 className="text-lg font-semibold mb-2 px-7 pt-5">
+            <h2 className="text-lg font-semibold mb-2 px-7 pt-5 text-gray-800">
               Sales Summary
             </h2>
             <hr />
@@ -65,7 +65,7 @@ const CardSalesSummary = () => {
             <div className="flex justify-between items-center mb-6 px-7 mt-5">
               <div className="text-lg font-medium">
                 <p className="text-xs text-gray-400">Value</p>
-                <span className="text-2xl font-extrabold">
+                <span className="text-2xl font-extrabold text-gray-700">
                   $
                   {(totalValueSum / 1000000).toLocaleString("en", {
                     maximumFractionDigits: 2,
@@ -133,10 +133,9 @@ const CardSalesSummary = () => {
               </BarChart>
             </ResponsiveContainer>
           </div>
-
           <div>
             <hr />
-            <div className="flex justify-between items-center mt-6 text-sm px-7 mb-4">
+            <div className="flex justify-between items-center mt-6 text-sm px-7 mb-4 text-blue-500">
               <p>{salesData.length || 0} days</p>
               <p className="text-sm">
                 Highest Sales Date:{" "}

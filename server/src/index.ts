@@ -21,7 +21,7 @@ app.use(loggerMiddleware);
 app.use("/dashboard", dashboardRoutes);
 app.use("/products", productRoutes);
 
-app.use("*", (req, res, next) => {
+app.use((req, res, next) => {
   next(new AppError(`Route ${req.originalUrl} not found`, 404));
 });
 

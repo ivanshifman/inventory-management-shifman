@@ -7,16 +7,16 @@ const CardPopularProducts = () => {
   const { data: dashboardMetrics, isLoading } = useGetDashboardMetricsQuery();
 
   return (
-    <div className="row-span-3 xl:row-span-6 bg-white shadow-md rounded-2xl pb-16">
+    <div className="row-span-3 xl:row-span-6 bg-white shadow-md rounded-2xl pb-16 text-gray-800">
       {isLoading ? (
         <Loader />
       ) : (
         <>
-          <h3 className="text-lg font-semibold px-7 pt-5 pb-2">
+          <h3 className="text-lg font-semibold px-7 pt-5 pb-2 text-gray-800">
             Popular Products
           </h3>
           <hr />
-          <div className="overflow-auto h-full">
+          <div className="overflow-auto h-full text-gray-800">
             {dashboardMetrics?.popularProducts?.length &&
               dashboardMetrics?.popularProducts.map((product) => (
                 <div
@@ -33,7 +33,7 @@ const CardPopularProducts = () => {
                         <span className="font-bold text-blue-500 text-xs">
                           ${product.price}
                         </span>
-                        <span className="mx-2">|</span>
+                        <span className="mx-2 text-gray-800">|</span>
                         <Rating rating={product.rating || 0} />
                       </div>
                     </div>
@@ -46,7 +46,9 @@ const CardPopularProducts = () => {
                     >
                       <ShoppingBag className="w-4 h-4" />
                     </button>
-                    {Math.round(product.stockQuantity / 1000)}k Sold
+                    <p className="text-gray-800">
+                      {Math.round(product.stockQuantity / 1000)}k Sold
+                    </p>
                   </div>
                 </div>
               ))}

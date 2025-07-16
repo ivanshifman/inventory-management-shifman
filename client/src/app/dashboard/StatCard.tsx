@@ -30,7 +30,7 @@ const StatCard = ({
     value >= 0 ? "text-green-500" : "text-red-500";
 
   return (
-    <div className="md:row-span-1 xl:row-span-2 bg-white col-span-1 shadow-md rounded-2xl flex flex-col justify-between">
+    <div className="md:row-span-1 xl:row-span-2 bg-white col-span-1 shadow-md rounded-2xl flex flex-col justify-between text-gray-800">
       <div>
         <div className="flex justify-between items-center mb-2 px-5 pt-4">
           <h2 className="font-semibold text-lg text-gray-700">{title}</h2>
