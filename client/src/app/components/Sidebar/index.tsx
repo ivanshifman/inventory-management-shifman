@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { setIsSidebarCollapsed } from "@/redux/state/globalSlice";
+import { useTranslation } from "react-i18next";
 import {
   Archive,
   CircleDollarSign,
@@ -56,17 +57,19 @@ const SideBar = () => {
     (state) => state.global.isSidebarCollapsed
   );
 
+  const { t } = useTranslation();
+
   const toggleSidebar = () => {
     dispatch(setIsSidebarCollapsed(!isSidebarCollapsed));
   };
 
   const sidebarLinks = [
-    { href: "/dashboard", icon: Layout, label: "Dashboard" },
-    { href: "/inventory", icon: Archive, label: "Inventory" },
-    { href: "/products", icon: Clipboard, label: "Products" },
-    { href: "/users", icon: User, label: "Users" },
-    { href: "/settings", icon: SlidersHorizontal, label: "Settings" },
-    { href: "/expenses", icon: CircleDollarSign, label: "Expenses" },
+    { href: "/dashboard", icon: Layout, label: t("dashboard") },
+    { href: "/inventory", icon: Archive, label: t("inventory") },
+    { href: "/products", icon: Clipboard, label: t("products") },
+    { href: "/users", icon: User, label: t("users") },
+    { href: "/settings", icon: SlidersHorizontal, label: t("settings") },
+    { href: "/expenses", icon: CircleDollarSign, label: t("expenses") },
   ];
 
   const sidebarClassNames = `fixed flex flex-col ${

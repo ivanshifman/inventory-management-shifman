@@ -5,6 +5,7 @@ import Navbar from "@/app/components/NavBar";
 import SideBar from "@/app/components/SideBar";
 import StoreProvider from "@/redux/store";
 import { useAppSelector } from "@/redux/hooks";
+import { useLanguage } from "@/redux/useLanguage";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const isSidebarCollapsed = useAppSelector(
@@ -17,6 +18,8 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
     html.classList.remove("dark", "light");
     html.classList.add(isDarkMode ? "dark" : "light");
   }, [isDarkMode]);
+
+  useLanguage();
 
   return (
     <div

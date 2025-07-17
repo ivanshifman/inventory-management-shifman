@@ -1,4 +1,5 @@
 import { useGetDashboardMetricsQuery } from "@/redux/state/api";
+import { useTranslation } from "react-i18next";
 import { TrendingDown, TrendingUp } from "lucide-react";
 import numeral from "numeral";
 import {
@@ -13,6 +14,9 @@ import Loader from "@/app/components/Loading";
 
 const CardPurchaseSummary = () => {
   const { data, isLoading } = useGetDashboardMetricsQuery();
+
+  const { t } = useTranslation();
+
   const purchaseData = data?.purchaseSummary || [];
 
   const lastDataPoint = purchaseData[purchaseData.length - 1] || null;
@@ -25,14 +29,14 @@ const CardPurchaseSummary = () => {
         <>
           <div>
             <h2 className="text-lg font-semibold mb-2 px-7 pt-5 text-gray-800">
-              Purchase Summary
+              {t("purchaseSummary")}
             </h2>
             <hr />
           </div>
 
           <div>
             <div className="mb-4 mt-7 px-7">
-              <p className="text-xs text-gray-400">Purchased</p>
+              <p className="text-xs text-gray-400">{t("purchased")}</p>
               <div className="flex items-center">
                 <p className="text-2xl font-bold">
                   {lastDataPoint

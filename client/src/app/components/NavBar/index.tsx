@@ -6,6 +6,7 @@ import {
   setIsDarkMode,
   setIsSidebarCollapsed,
 } from "@/redux/state/globalSlice";
+import { useTranslation } from "react-i18next";
 import { Bell, Menu, Moon, Settings, Sun } from "lucide-react";
 
 const NavBar = () => {
@@ -13,7 +14,10 @@ const NavBar = () => {
   const isSidebarCollapsed = useAppSelector(
     (state) => state.global.isSidebarCollapsed
   );
+
   const isDarkMode = useAppSelector((state) => state.global.isDarkMode);
+
+  const { t } = useTranslation();
 
   const toggleSidebar = () => {
     dispatch(setIsSidebarCollapsed(!isSidebarCollapsed));
@@ -42,7 +46,7 @@ const NavBar = () => {
         <div className="relative">
           <input
             type="search"
-            placeholder="Start type to search groups & products"
+            placeholder={t("searchNav")}
             className="pl-10 pr-4 py-2 w-50 md:w-60 border-2 border-gray-300 bg-white rounded-lg focus:outline-none focus:border-blue-500 placeholder:text-gray-600 text-gray-900"
           />
 

@@ -1,5 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import { v4 } from "uuid";
+import { useTranslation } from "react-i18next";
 import Header from "@/app/components/Header";
 
 type ProductFormData = {
@@ -27,6 +28,8 @@ const CreateProductModal = ({
     stockQuantity: 0,
     rating: 0,
   });
+
+  const { t } = useTranslation();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -56,12 +59,12 @@ const CreateProductModal = ({
         <Header name="Create New Product" />
         <form onSubmit={handleSubmit} className="mt-5">
           <label htmlFor="productName" className={labelCssStyles}>
-            Product Name
+            {t("productName")}
           </label>
           <input
             type="text"
             name="name"
-            placeholder="Name"
+            placeholder={t("productName")}
             onChange={handleChange}
             value={formData.name}
             className={inputCssStyles}
@@ -70,7 +73,7 @@ const CreateProductModal = ({
           />
 
           <label htmlFor="productPrice" className={labelCssStyles}>
-            Price
+            {t("productPrice")}
           </label>
           <input
             type="number"
@@ -84,7 +87,7 @@ const CreateProductModal = ({
           />
 
           <label htmlFor="stockQuantity" className={labelCssStyles}>
-            Stock Quantity
+            {t("stockQuantity")}
           </label>
           <input
             type="number"
@@ -98,7 +101,7 @@ const CreateProductModal = ({
           />
 
           <label htmlFor="rating" className={labelCssStyles}>
-            Rating
+            {t("rating")}
           </label>
           <input
             type="number"
@@ -115,14 +118,14 @@ const CreateProductModal = ({
             type="submit"
             className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 cursor-pointer"
           >
-            Create
+            {t("create")}
           </button>
           <button
             onClick={onClose}
             type="button"
             className="ml-2 px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-700 cursor-pointer"
           >
-            Cancel
+            {t("cancel")}
           </button>
         </form>
       </div>

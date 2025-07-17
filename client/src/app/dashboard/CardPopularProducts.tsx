@@ -1,10 +1,13 @@
 import { useGetDashboardMetricsQuery } from "@/redux/state/api";
+import { useTranslation } from "react-i18next";
 import { ShoppingBag } from "lucide-react";
 import Rating from "@app/components/Rating";
 import Loader from "@app/components/Loading";
 
 const CardPopularProducts = () => {
   const { data: dashboardMetrics, isLoading } = useGetDashboardMetricsQuery();
+
+  const { t } = useTranslation();
 
   return (
     <div className="row-span-3 xl:row-span-6 bg-white shadow-md rounded-2xl pb-16 text-gray-800">
@@ -13,7 +16,7 @@ const CardPopularProducts = () => {
       ) : (
         <>
           <h3 className="text-lg font-semibold px-7 pt-5 pb-2 text-gray-800">
-            Popular Products
+            {t("popularProducts")}
           </h3>
           <hr />
           <div className="overflow-auto h-full text-gray-800">
@@ -47,7 +50,7 @@ const CardPopularProducts = () => {
                       <ShoppingBag className="w-4 h-4" />
                     </button>
                     <p className="text-gray-800">
-                      {Math.round(product.stockQuantity / 1000)}k Sold
+                      {Math.round(product.stockQuantity / 1000)}{t("kSold")}
                     </p>
                   </div>
                 </div>

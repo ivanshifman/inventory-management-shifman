@@ -6,6 +6,7 @@ import {
   useGetProductsQuery,
 } from "@/redux/state/api";
 import { useAppSelector } from "@/redux/hooks";
+import { useTranslation } from "react-i18next";
 import CreateProductModal from "./CreateProductModal";
 import { PlusCircleIcon, SearchIcon } from "lucide-react";
 import Rating from "@/app/components/Rating";
@@ -36,6 +37,8 @@ const Products = () => {
 
   const isDarkMode = useAppSelector((state) => state.global.isDarkMode);
 
+  const { t } = useTranslation();
+
   if (isLoading) {
     return <Loader />;
   }
@@ -55,7 +58,7 @@ const Products = () => {
           />
           <input
             className="w-full py-2 px-4 rounded bg-white placeholder:text-gray-600 text-gray-900"
-            placeholder="Search products..."
+            placeholder={t("searchProducts")}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -68,20 +71,32 @@ const Products = () => {
             isDarkMode ? "text-gray-50" : "text-gray-900"
           } text-2xl font-semibold`}
         >
-          Products
+          {t("products")}
         </h2>
         <button
           className="flex items-center bg-blue-500 hover:bg-blue-700 text-gray-200 font-bold py-2 px-4 rounded"
           onClick={() => setIsModalOpen(true)}
         >
-          <PlusCircleIcon className="w-5 h-5 mr-2 !text-gray-200" /> Create
-          Product
+          <PlusCircleIcon className="w-5 h-5 mr-2 !text-gray-200" />{" "}
+          {t("createProduct")}
         </button>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg-grid-cols-3 gap-10 justify-between">
-        {isLoading ? (
-          <Loader />
+      <div
+        className={`grid ${
+          products.length === 0
+            ? "grid-cols-1"
+            : "grid-cols-1 sm:grid-cols-2 lg-grid-cols-3 gap-10 justify-between"
+        } `}
+      >
+        {isLoading && <Loader />}
+
+        {products.length === 0 ? (
+          <div className="mt-16">
+            <p className="text-center ml-7 text-4xl text-red-600">
+              {t("noProductsFound")}
+            </p>
+          </div>
         ) : (
           products?.map((product) => (
             <div

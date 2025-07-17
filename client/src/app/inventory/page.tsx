@@ -2,39 +2,17 @@
 
 import { useGetProductsQuery } from "@/redux/state/api";
 import { useAppSelector } from "@/redux/hooks";
+import { useTranslation } from "react-i18next";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import Loader from "@/app/components/Loading";
 import ErrorLoading from "@/app/components/Error";
-
-const columns: GridColDef[] = [
-  { field: "productId", headerName: "ID", width: 90 },
-  { field: "name", headerName: "Product Name", width: 200 },
-  {
-    field: "price",
-    headerName: "Price",
-    width: 110,
-    type: "number",
-    valueGetter: (value, row) => `$${row.price}`,
-  },
-  {
-    field: "rating",
-    headerName: "Rating",
-    width: 110,
-    type: "number",
-    valueGetter: (value, row) => (row.rating ? row.rating : "N/A"),
-  },
-  {
-    field: "stockQuantity",
-    headerName: "Stock Quantity",
-    width: 150,
-    type: "number",
-  },
-];
 
 const Inventory = () => {
   const { data: products, isError, isLoading } = useGetProductsQuery();
 
   const isDarkMode = useAppSelector((state) => state.global.isDarkMode);
+
+  const { t } = useTranslation();
 
   if (isLoading) {
     return <Loader />;
@@ -44,6 +22,31 @@ const Inventory = () => {
     return <ErrorLoading refetch={() => {}} message="Error loading products" />;
   }
 
+  const columns: GridColDef[] = [
+    { field: "productId", headerName: "ID", width: 90 },
+    { field: "name", headerName: t("productName"), width: 200 },
+    {
+      field: "price",
+      headerName: t("price"),
+      width: 110,
+      type: "number",
+      valueGetter: (value, row) => `$${row.price}`,
+    },
+    {
+      field: "rating",
+      headerName: t("rating"),
+      width: 110,
+      type: "number",
+      valueGetter: (value, row) => (row.rating ? row.rating : "N/A"),
+    },
+    {
+      field: "stockQuantity",
+      headerName: t("stockQuantity"),
+      width: 150,
+      type: "number",
+    },
+  ];
+
   return (
     <div className="flex flex-col">
       <h2
@@ -51,7 +54,7 @@ const Inventory = () => {
           isDarkMode ? "text-gray-50" : "text-gray-900"
         } text-2xl font-semibold`}
       >
-        Inventory
+        {t("inventory")}
       </h2>
       <DataGrid
         rows={products}

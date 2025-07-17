@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useGetDashboardMetricsQuery } from "@/redux/state/api";
+import { useTranslation } from "react-i18next";
 import { TrendingUp } from "lucide-react";
 import {
   Bar,
@@ -15,6 +16,9 @@ import ErrorLoading from "@/app/components/Error";
 
 const CardSalesSummary = () => {
   const { data, isLoading, isError, refetch } = useGetDashboardMetricsQuery();
+
+  const { t } = useTranslation();
+
   const salesData = data?.salesSummary || [];
 
   const [timeframe, setTimeframe] = useState("weekly");
@@ -56,7 +60,7 @@ const CardSalesSummary = () => {
         <>
           <div>
             <h2 className="text-lg font-semibold mb-2 px-7 pt-5 text-gray-800">
-              Sales Summary
+              {t("saleSummary")}
             </h2>
             <hr />
           </div>
@@ -64,7 +68,7 @@ const CardSalesSummary = () => {
           <div>
             <div className="flex justify-between items-center mb-6 px-7 mt-5">
               <div className="text-lg font-medium">
-                <p className="text-xs text-gray-400">Value</p>
+                <p className="text-xs text-gray-400">{t("value")}</p>
                 <span className="text-2xl font-extrabold text-gray-700">
                   $
                   {(totalValueSum / 1000000).toLocaleString("en", {
@@ -85,9 +89,9 @@ const CardSalesSummary = () => {
                   setTimeframe(e.target.value);
                 }}
               >
-                <option value="daily">Daily</option>
-                <option value="weekly">Weekly</option>
-                <option value="monthly">Monthly</option>
+                <option value="daily">{t("daily")}</option>
+                <option value="weekly">{t("weekly")}</option>
+                <option value="monthly">{t("monthly")}</option>
               </select>
             </div>
             <ResponsiveContainer width="100%" height={350} className="px-7">
@@ -138,7 +142,7 @@ const CardSalesSummary = () => {
             <div className="flex justify-between items-center mt-6 text-sm px-7 mb-4 text-blue-500">
               <p>{salesData.length || 0} days</p>
               <p className="text-sm">
-                Highest Sales Date:{" "}
+                {t("highestSalesDate")}:{" "}
                 <span className="font-bold">{highestValueDate}</span>
               </p>
             </div>

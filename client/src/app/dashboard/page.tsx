@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useGetDashboardMetricsQuery } from "@/redux/state/api";
+import { useTranslation } from "react-i18next";
 import {
   CheckCircle,
   LucideIcon,
@@ -26,6 +27,8 @@ const ICONS: Record<string, LucideIcon> = {
 
 const Dashboard = () => {
   const { data: dashboardMetrics } = useGetDashboardMetricsQuery();
+  const { t } = useTranslation();
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 xl:overflow-auto gap-10 pb-4 custom-grid-rows">
       <CardPopularProducts />
@@ -35,13 +38,13 @@ const Dashboard = () => {
       {dashboardMetrics?.statCards.map((card) => (
         <StatCard
           key={card.statCardId}
-          title={card.title}
+          title={t(card.title)}
           primaryIcon={React.createElement(ICONS[card.primaryIcon] || Package, {
             className: "text-blue-600 w-6 h-6",
           })}
-          dateRange={card.dateRange}
+          dateRange={t(card.dateRange)}
           details={card.details.map((d) => ({
-            title: d.title,
+            title: t(d.title),
             amount: d.amount.toFixed(2),
             changePercentage: d.changePercentage,
             IconComponent: ICONS[d.icon] || TrendingUp,

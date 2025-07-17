@@ -1,7 +1,6 @@
-import {
-  ExpenseByCategorySummary,
-  useGetDashboardMetricsQuery,
-} from "@/redux/state/api";
+import { useGetDashboardMetricsQuery } from "@/redux/state/api";
+import { ExpenseByCategorySummary } from "@/redux/api.interface";
+import { useTranslation } from "react-i18next";
 import { TrendingUp } from "lucide-react";
 import { Cell, Pie, PieChart, ResponsiveContainer } from "recharts";
 import Loader from "@/app/components/Loading";
@@ -14,6 +13,8 @@ const colors = ["#00C49F", "#0088FE", "#FFBB28"];
 
 const CardExpenseSummary = () => {
   const { data: dashboardMetrics, isLoading } = useGetDashboardMetricsQuery();
+
+  const { t } = useTranslation();
 
   const expenseSummary = dashboardMetrics?.expenseSummary[0];
 
@@ -52,7 +53,7 @@ const CardExpenseSummary = () => {
         <>
           <div>
             <h2 className="text-lg font-semibold mb-2 px-7 pt-5 text-gray-800">
-              Expense Summary
+              {t("expensesSummary")}
             </h2>
             <hr />
           </div>
@@ -106,7 +107,7 @@ const CardExpenseSummary = () => {
               <div className="mt-3 flex justify-between items-center px-7 mb-5">
                 <div className="">
                   <p className="text-sm text-gray-800">
-                    Average:{" "}
+                    {t("average")}:{" "}
                     <span className="font-semibold">
                       ${expenseSummary.totalExpenses.toFixed(2)}
                     </span>
