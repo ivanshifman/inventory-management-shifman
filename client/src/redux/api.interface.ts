@@ -70,3 +70,13 @@ export interface User {
   name: string;
   email: string;
 }
+
+export interface Notification {
+  id: string;
+  message: string;
+  type: string;
+  entityId?: string;
+  isDeleted: boolean;
+  isRead: boolean;
+  createdAt: Date;
+}

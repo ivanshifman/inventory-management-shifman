@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
@@ -11,10 +12,11 @@ import {
   Clipboard,
   Layout,
   LucideIcon,
-  Menu,
   SlidersHorizontal,
   User,
+  X,
 } from "lucide-react";
+
 
 interface SidebarLinkProps {
   href: string;
@@ -76,8 +78,31 @@ const SideBar = () => {
     isSidebarCollapsed ? "w-0 md:w-16" : "w-72 md:w-64"
   } bg-white transition-all duration-300 overflow-hidden h-full shadow-md z-40`;
 
+  const sidebarRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        sidebarRef.current &&
+        !sidebarRef.current.contains(e.target as Node)
+      ) {
+        dispatch(setIsSidebarCollapsed(true));
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(setIsSidebarCollapsed(true));
+  }, [pathname, dispatch]);
+
   return (
-    <nav className={sidebarClassNames}>
+    <nav ref={sidebarRef} className={sidebarClassNames}>
       <div
         className={`flex gap-3 justify-between md:justify-normal items-center pt-8 ${
           isSidebarCollapsed ? "px-5" : "px-8"
@@ -92,7 +117,7 @@ const SideBar = () => {
           onClick={toggleSidebar}
           aria-label="menu"
         >
-          <Menu className="w-4 h-4" />
+          <X className="w-4 h-4 text-gray-800" />
         </button>
       </div>
 

@@ -28,14 +28,20 @@ export const createProduct = async (
   next: NextFunction
 ): Promise<void> => {
   try {
-    const { productId, name, price, rating, stockQuantity } = req.body;
+    const { name, price, rating, stockQuantity } = req.body;
     const product = await prisma.products.create({
       data: {
-        productId,
         name,
         price,
         rating,
         stockQuantity,
+      },
+    });
+    await prisma.notification.create({
+      data: {
+        message: `New product created: ${name}`,
+        type: "product",
+        entityId: product.productId,
       },
     });
     res.status(201).json(product);

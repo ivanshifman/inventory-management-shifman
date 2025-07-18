@@ -81,7 +81,7 @@ model ExpenseByCategory {
 }
 
 model StatCard {
-  statCardId          String           @id @default(uuid())
+  statCardId  String           @id @default(uuid())
   title       String
   dateRange   String
   primaryIcon String
@@ -89,11 +89,21 @@ model StatCard {
 }
 
 model StatCardDetail {
-  statCardDetailId              String   @id @default(uuid())
+  statCardDetailId String   @id @default(uuid())
   title            String
   amount           Float
   changePercentage Int
   icon             String
   statCardId       String
   statCard         StatCard @relation(fields: [statCardId], references: [statCardId])
+}
+
+model Notification {
+  id        String   @id @default(uuid())
+  message   String
+  type      String
+  entityId  String?
+  isDeleted  Boolean  @default(false)
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
 }
