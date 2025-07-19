@@ -112,7 +112,9 @@ const Products = () => {
                 >
                   {product.name}
                 </h3>
-                <p className="text-gray-800">${product.price.toFixed(2)}</p>
+                <p className={`${
+                    isDarkMode ? "text-gray-100" : "text-gray-800"
+                  } text-sm mt-1`}>${product.price.toFixed(2)}</p>
                 <div
                   className={`${
                     isDarkMode ? "text-gray-50" : "text-gray-600"

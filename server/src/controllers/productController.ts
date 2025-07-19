@@ -29,22 +29,28 @@ export const createProduct = async (
 ): Promise<void> => {
   try {
     const { name, price, rating, stockQuantity } = req.body;
-    const product = await prisma.products.create({
-      data: {
-        name,
-        price,
-        rating,
-        stockQuantity,
-      },
+    const result = await prisma.$transaction(async (tx) => {
+      const product = await tx.products.create({
+        data: {
+          name,
+          price,
+          rating,
+          stockQuantity,
+        },
+      });
+
+      await tx.notification.create({
+        data: {
+          message: `New product created: ${name}`,
+          type: "product",
+          entityId: product.productId,
+        },
+      });
+
+      return product;
     });
-    await prisma.notification.create({
-      data: {
-        message: `New product created: ${name}`,
-        type: "product",
-        entityId: product.productId,
-      },
-    });
-    res.status(201).json(product);
+
+    res.status(201).json(result);
   } catch (error) {
     next(handlePrismaError(error));
   }

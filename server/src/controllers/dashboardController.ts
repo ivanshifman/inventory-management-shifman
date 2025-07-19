@@ -8,55 +8,29 @@ export const getDashboardMetrics = async (
   next: NextFunction
 ): Promise<void> => {
   try {
-    const popularProducts = await prisma.products.findMany({
-      take: 15,
-      orderBy: {
-        stockQuantity: "desc",
-      },
-    });
+    const [
+      popularProducts,
+      salesSummary,
+      purchaseSummary,
+      expenseSummary,
+      rawCategory,
+      statCards,
+    ] = await Promise.all([
+      prisma.products.findMany({
+        take: 15,
+        orderBy: { stockQuantity: "desc" },
+      }),
+      prisma.salesSummary.findMany({ take: 5, orderBy: { date: "desc" } }),
+      prisma.purchaseSummary.findMany({ take: 5, orderBy: { date: "desc" } }),
+      prisma.expenseSummary.findMany({ take: 5, orderBy: { date: "desc" } }),
+      prisma.expenseByCategory.findMany({ take: 5, orderBy: { date: "desc" } }),
+      prisma.statCard.findMany({ include: { details: true } }),
+    ]);
 
-    const salesSummary = await prisma.salesSummary.findMany({
-      take: 5,
-      orderBy: {
-        date: "desc",
-      },
-    });
-
-    const purchaseSummary = await prisma.purchaseSummary.findMany({
-      take: 5,
-      orderBy: {
-        date: "desc",
-      },
-    });
-
-    const expenseSummary = await prisma.expenseSummary.findMany({
-      take: 5,
-      orderBy: {
-        date: "desc",
-      },
-    });
-
-    const expenseByCategorySummaryRaw = await prisma.expenseByCategory.findMany(
-      {
-        take: 5,
-        orderBy: {
-          date: "desc",
-        },
-      }
-    );
-
-    const expenseByCategorySummary = expenseByCategorySummaryRaw.map(
-      (item) => ({
-        ...item,
-        amount: item.amount.toString(),
-      })
-    );
-
-    const statCards = await prisma.statCard.findMany({
-      include: {
-        details: true,
-      },
-    });
+    const expenseByCategorySummary = rawCategory.map((item) => ({
+      ...item,
+      amount: item.amount.toString(),
+    }));
 
     res.json({
       popularProducts,
