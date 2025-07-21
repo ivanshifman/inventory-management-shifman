@@ -129,25 +129,37 @@ const NavBar = () => {
             )}
             {isOpen && (
               <div className="absolute right-0 mt-2 w-80 bg-white shadow-lg rounded-lg z-50 p-4">
-                <h3 className="font-bold mb-2 text-gray-800">Notificaciones</h3>
+                <h3 className="font-bold mb-2 text-gray-800">
+                  {t("notifications")}
+                </h3>
                 <ul className="max-h-60 overflow-y-auto">
-                  {visibleNotifications.map((n) => (
-                    <li
-                      key={n.id}
-                      className={`flex justify-between items-center p-2 my-2 rounded ${
-                        n.isRead ? "bg-gray-200" : "bg-blue-400"
-                      }`}
-                    >
-                      <span className="text-sm text-gray-700">{n.message}</span>
-                      <button
-                        onClick={() => deleteNotification(n.id)}
-                        className="text-red-500 hover:underline text-sm cursor-pointer"
-                        aria-label="Delete notification"
+                  {visibleNotifications && visibleNotifications.length > 0 ? (
+                    visibleNotifications.map((n) => (
+                      <li
+                        key={n.id}
+                        className={`flex justify-between items-center p-2 my-2 rounded ${
+                          n.isRead ? "bg-gray-200" : "bg-blue-400"
+                        }`}
                       >
-                        {t("delete")}
-                      </button>
+                        <span className="text-sm text-gray-700">
+                          {n.message}
+                        </span>
+                        <button
+                          onClick={() => deleteNotification(n.id)}
+                          className="text-red-500 hover:underline text-sm cursor-pointer"
+                          aria-label="Delete notification"
+                        >
+                          {t("delete")}
+                        </button>
+                      </li>
+                    ))
+                  ) : (
+                    <li className="flex justify-between items-center p-2 my-2 rounded bg-gray-200">
+                      <span className="text-sm text-red-500 font-bold">
+                        {t("noNotification")}
+                      </span>
                     </li>
-                  ))}
+                  )}
                 </ul>
               </div>
             )}

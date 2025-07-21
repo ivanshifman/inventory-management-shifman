@@ -15,8 +15,8 @@ const Settings = () => {
   const { t, i18n } = useTranslation();
 
   const mockSettings: UserSetting[] = [
-    { label: "username", value: "john_doe", type: "text" },
-    { label: "email", value: "john.doe@example.com", type: "text" },
+    { label: "username", value: "ivansh", type: "text" },
+    { label: "email", value: "ivansh@example.com", type: "text" },
     { label: "notification", value: true, type: "toggle" },
     { label: "darkMode", value: false, type: "toggle" },
     { label: "language", value: i18n.language, type: "text" },
@@ -112,6 +112,7 @@ const Settings = () => {
                       value={setting.value as string}
                       aria-label={setting.label}
                       onChange={(e) => handleTextChange(index, e.target.value)}
+                      disabled
                     />
                   )}
                 </td>
