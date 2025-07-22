@@ -27,7 +27,6 @@ const CardPopularProducts = () => {
                   className="flex items-center justify-between gap-3 px-5 py-7 border-b"
                 >
                   <div className="flex items-center gap-3">
-                    <div>img</div>
                     <div className="flex flex-col justify-between gap-1">
                       <div className="font-bold text-gray-700">
                         {product.name}
@@ -50,7 +49,8 @@ const CardPopularProducts = () => {
                       <ShoppingBag className="w-4 h-4" />
                     </button>
                     <p className="text-gray-800">
-                      {Math.round(product.stockQuantity / 1000)}{t("kSold")}
+                      {Math.round(product.stockQuantity / 1000)}
+                      {t("kSold")}
                     </p>
                   </div>
                 </div>

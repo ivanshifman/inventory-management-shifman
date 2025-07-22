@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
 import {
   setIsDarkMode,
   setIsSidebarCollapsed,
@@ -12,6 +11,7 @@ import {
   useMarkAllAsReadMutation,
   useDeleteNotificationMutation,
 } from "@/redux/state/api";
+import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import { Bell, Menu, Moon, Settings, Sun } from "lucide-react";
 
@@ -166,7 +166,6 @@ const NavBar = () => {
           </div>
           <hr className="w-0 h-7 border border-solid border-l border-gray-300 mx-3" />
           <div className="flex items-center gap-3 cursor-pointer">
-            img
             <span className="font-semibold">Ivan Shifman</span>
           </div>
         </div>

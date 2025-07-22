@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { setIsSidebarCollapsed } from "@/redux/state/globalSlice";
+import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import {
   Archive,
@@ -16,7 +16,6 @@ import {
   User,
   X,
 } from "lucide-react";
-
 
 interface SidebarLinkProps {
   href: string;
@@ -108,7 +107,6 @@ const SideBar = () => {
           isSidebarCollapsed ? "px-5" : "px-8"
         }`}
       >
-        logo
         {!isSidebarCollapsed && (
           <h1 className="font-extrabold text-2xl text-gray-900">SHIFMAN</h1>
         )}

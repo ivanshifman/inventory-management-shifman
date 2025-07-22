@@ -104,7 +104,6 @@ const Products = () => {
               className="border shadow rounded-md p-4 max-w-full w-full mx-auto"
             >
               <div className="flex flex-col items-center">
-                img
                 <h3
                   className={`${
                     isDarkMode ? "text-gray-50" : "text-gray-800"
@@ -112,9 +111,13 @@ const Products = () => {
                 >
                   {product.name}
                 </h3>
-                <p className={`${
+                <p
+                  className={`${
                     isDarkMode ? "text-gray-100" : "text-gray-800"
-                  } text-sm mt-1`}>${product.price.toFixed(2)}</p>
+                  } text-sm mt-1`}
+                >
+                  ${product.price.toFixed(2)}
+                </p>
                 <div
                   className={`${
                     isDarkMode ? "text-gray-50" : "text-gray-600"
