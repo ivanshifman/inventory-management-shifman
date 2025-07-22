@@ -12,5 +12,6 @@ export function handlePrismaError(error: unknown): AppError {
         return new AppError("Invalid database request", 400);
     }
   }
+  console.error("🔴 Prisma error:", error);
   return new AppError("Unexpected server error", 500);
 }
