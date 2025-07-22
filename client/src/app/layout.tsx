@@ -35,12 +35,12 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Shifman Inventory Manager",
     description: "A powerful tool for managing product inventory in real time.",
-    url: "https://inventory-management-shifman.onrender.com",
+    url: "https://inventory-management-shifman-1o2d.onrender.com",
     siteName: "Shifman Inventory",
     locale: "en_US",
     type: "website",
   },
-  metadataBase: new URL("https://inventory-management-shifman.onrender.com"),
+  metadataBase: new URL("https://inventory-management-shifman-1o2d.onrender.com"),
   alternates: {
     canonical: "/en",
     languages: {
