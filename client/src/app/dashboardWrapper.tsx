@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useAppSelector } from "../redux/hooks";
 import { useLanguage} from "../redux/useLanguage"
 import NavBar from "./components/NavBar";
-import SideBar from "./components/SideBar";
+import SideBar from "./components/SideBar/index";
 import StoreProvider from "../redux/store";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
