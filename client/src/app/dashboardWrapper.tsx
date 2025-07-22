@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useAppSelector } from "../redux/hooks";
 import { useLanguage} from "../redux/useLanguage"
 import NavBar from "./components/NavBar";
-import SideBar from "./components/SideBar/index";
+import SideBarNav from "./components/SideBarNav";
 import StoreProvider from "../redux/store";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
@@ -29,7 +29,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
           : "light bg-gray-50 text-gray-900"
       } flex  w-full min-h-screen`}
     >
-      <SideBar />
+      <SideBarNav />
       <main
         className={`flex flex-col w-full h-full py-7 px-9 ${
           isDarkMode ? "bg-gray-900" : "bg-gray-50"

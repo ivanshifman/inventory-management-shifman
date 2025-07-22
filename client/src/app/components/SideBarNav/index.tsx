@@ -52,7 +52,7 @@ const SidebarLink = ({
   );
 };
 
-const SideBar = () => {
+const SideBarNav = () => {
   const dispatch = useAppDispatch();
   const isSidebarCollapsed = useAppSelector(
     (state) => state.global.isSidebarCollapsed
@@ -140,4 +140,4 @@ const SideBar = () => {
   );
 };
 
-export default SideBar;
+export default SideBarNav;
