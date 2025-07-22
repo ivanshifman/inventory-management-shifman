@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useGetDashboardMetricsQuery } from "@/redux/state/api";
+import { useGetDashboardMetricsQuery } from "../../redux/state/api";
 import { useTranslation } from "react-i18next";
 import {
   CheckCircle,

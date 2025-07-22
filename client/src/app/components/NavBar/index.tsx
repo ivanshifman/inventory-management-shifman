@@ -4,13 +4,13 @@ import { useEffect, useRef, useState } from "react";
 import {
   setIsDarkMode,
   setIsSidebarCollapsed,
-} from "@/redux/state/globalSlice";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+} from "../../../redux/state/globalSlice";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import {
   useGetNotificationsQuery,
   useMarkAllAsReadMutation,
   useDeleteNotificationMutation,
-} from "@/redux/state/api";
+} from "../../../redux/state/api";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import { Bell, Menu, Moon, Settings, Sun } from "lucide-react";

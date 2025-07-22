@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "@app/lib/i18n";
+import "./lib/i18n";
 import "./globals.css";
 import DashboardWrapper from "./dashboardWrapper";
 

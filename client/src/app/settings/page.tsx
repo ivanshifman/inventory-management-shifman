@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { setIsDarkMode, setLanguage } from "@/redux/state/globalSlice";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { setIsDarkMode, setLanguage } from "../../redux/state/globalSlice";
 import { useTranslation } from "react-i18next";
 
 type UserSetting = {

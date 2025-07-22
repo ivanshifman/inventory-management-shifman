@@ -1,11 +1,11 @@
 "use client";
 
-import { useGetProductsQuery } from "@/redux/state/api";
-import { useAppSelector } from "@/redux/hooks";
+import { useGetProductsQuery } from "../../redux/state/api";
+import { useAppSelector } from "../../redux/hooks";
 import { useTranslation } from "react-i18next";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import Loader from "@/app/components/Loading";
-import ErrorLoading from "@/app/components/Error";
+import Loader from "../components/Loading";
+import ErrorLoading from "../components/Error";
 
 const Inventory = () => {
   const { data: products, isError, isLoading } = useGetProductsQuery();

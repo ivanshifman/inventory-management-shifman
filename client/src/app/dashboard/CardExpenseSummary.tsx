@@ -1,9 +1,9 @@
-import { useGetDashboardMetricsQuery } from "@/redux/state/api";
-import { ExpenseByCategorySummary } from "@/redux/api.interface";
+import { useGetDashboardMetricsQuery } from "../../redux/state/api";
+import { ExpenseByCategorySummary } from "../../redux/api.interface";
 import { useTranslation } from "react-i18next";
 import { TrendingUp } from "lucide-react";
 import { Cell, Pie, PieChart, ResponsiveContainer } from "recharts";
-import Loader from "@/app/components/Loading";
+import Loader from "../components/Loading";
 
 type ExpenseSums = {
   [category: string]: number;

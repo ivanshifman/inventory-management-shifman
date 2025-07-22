@@ -1,9 +1,9 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { useGetExpensesByCategoryQuery } from "@/redux/state/api";
-import { useAppSelector } from "@/redux/hooks";
-import { ExpenseByCategorySummary } from "@/redux/api.interface";
+import { useGetExpensesByCategoryQuery } from "../../redux/state/api";
+import { useAppSelector } from "../../redux/hooks";
+import { ExpenseByCategorySummary } from "../../redux/api.interface";
 import { useTranslation } from "react-i18next";
 import {
   Cell,
@@ -13,8 +13,8 @@ import {
   ResponsiveContainer,
   Tooltip,
 } from "recharts";
-import Loader from "@/app/components/Loading";
-import ErrorLoading from "@/app/components/Error";
+import Loader from "../components/Loading";
+import ErrorLoading from "../components/Error";
 
 type AggregatedDataItem = {
   name: string;

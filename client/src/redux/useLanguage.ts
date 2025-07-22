@@ -1,6 +1,6 @@
 "use client";
 
-import { useAppSelector } from "@/redux/hooks";
+import { useAppSelector } from "../redux/hooks";
 import i18n from "@/app/lib/i18n";
 import { useEffect } from "react";
 

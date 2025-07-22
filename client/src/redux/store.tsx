@@ -16,8 +16,8 @@ import {
   REGISTER,
 } from "redux-persist";
 import createWebStorage from "redux-persist/lib/storage/createWebStorage";
-import globalReducer from "@/redux/state/globalSlice";
-import { api } from "@/redux/state/api";
+import globalReducer from "../redux/state/globalSlice";
+import { api } from "../redux/state/api";
 
 const createNoopStorage = () => ({
   getItem(_key: any) {

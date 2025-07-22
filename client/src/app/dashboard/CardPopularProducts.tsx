@@ -1,8 +1,8 @@
-import { useGetDashboardMetricsQuery } from "@/redux/state/api";
+import { useGetDashboardMetricsQuery } from "../../redux/state/api";
 import { useTranslation } from "react-i18next";
 import { ShoppingBag } from "lucide-react";
-import Rating from "@app/components/Rating";
-import Loader from "@app/components/Loading";
+import Rating from "../components/Rating";
+import Loader from "../components/Loading";
 
 const CardPopularProducts = () => {
   const { data: dashboardMetrics, isLoading } = useGetDashboardMetricsQuery();

@@ -4,14 +4,14 @@ import { useState } from "react";
 import {
   useCreateProductMutation,
   useGetProductsQuery,
-} from "@/redux/state/api";
-import { useAppSelector } from "@/redux/hooks";
+} from "../../redux/state/api";
+import { useAppSelector } from "../../redux/hooks";
 import { useTranslation } from "react-i18next";
 import CreateProductModal from "./CreateProductModal";
 import { PlusCircleIcon, SearchIcon } from "lucide-react";
-import Rating from "@/app/components/Rating";
-import Loader from "@/app/components/Loading";
-import ErrorLoading from "@/app/components/Error";
+import Rating from "../components/Rating";
+import Loader from "../components/Loading";
+import ErrorLoading from "../components/Error";
 
 type ProductFormData = {
   name: string;

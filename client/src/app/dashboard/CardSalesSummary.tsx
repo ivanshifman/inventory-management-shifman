@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useGetDashboardMetricsQuery } from "@/redux/state/api";
+import { useGetDashboardMetricsQuery } from "../../redux/state/api";
 import { useTranslation } from "react-i18next";
 import { TrendingUp } from "lucide-react";
 import {
@@ -11,8 +11,8 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import Loader from "@/app/components/Loading";
-import ErrorLoading from "@/app/components/Error";
+import Loader from "../components/Loading";
+import ErrorLoading from "../components/Error";
 
 const CardSalesSummary = () => {
   const { data, isLoading, isError, refetch } = useGetDashboardMetricsQuery();

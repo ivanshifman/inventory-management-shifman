@@ -2,8 +2,8 @@
 
 import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { setIsSidebarCollapsed } from "@/redux/state/globalSlice";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import { setIsSidebarCollapsed } from "../../../redux/state/globalSlice";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import {
